@@ -1,0 +1,34 @@
+# OS名を取得
+if [ "$(uname)" == 'Darwin' ]; then
+  OS='Mac'
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+  OS='Linux'
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
+  OS='Cygwin'
+else
+  echo "Your platform ($(uname -a)) is not supported."
+  exit 1
+fi
+
+# エイリアス設定
+if [ $OS == 'Mac' ]; then
+  alias ls='ls --color=auto'
+fi
+
+alias ll='ls -al'
+alias vi='vim'
+
+alias ..='cd ./../'
+alias ...='cd ./../../'
+alias ....='cd ./../../../'
+alias .....='cd ./../../../../'
+
+# 環境変数設定
+
+
+# 初期化
+if [ $OS == 'Mac' ]; then
+  eval $(dircolors ~/dircolors.ansi-universal)
+elif [ $OS == 'Linux' ]; then
+  eval $(dircolors ~/dircolors.ansi-universal)
+fi
