@@ -25,6 +25,8 @@ alias .....='cd ./../../../../'
 
 # 環境変数設定
 
+## dircolor
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 # 初期化
 if [ $OS == 'Mac' ]; then
@@ -32,3 +34,14 @@ if [ $OS == 'Mac' ]; then
 elif [ $OS == 'Linux' ]; then
   eval $(dircolors ~/dircolors.ansi-universal)
 fi
+
+# Git設定
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1 /'
+}
+source ~/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+
+# PS1設定
+export PS1='\[\e[0;30;107m\] \w \[\e[1;37;41m\]$(parse_git_branch)\[\e[0m\]\n \$ '
+
