@@ -21,6 +21,9 @@ fi
 cp -rp "${SCRIPT_DIR}/${BASH_PROFILE}" "${HOME}/${BASH_PROFILE}"
 cp -rp "${SCRIPT_DIR}/${BASHRC}" "${HOME}/${BASHRC}"
 
+# Git関連ファイルをコピー
+cp -rp "${SCRIPT_DIR}/git/git-completion.bash" "${HOME}/git-completion.bash"
+
 # .bash_profileを読み込み直す
 source "${HOME}/${BASH_PROFILE}"
 
